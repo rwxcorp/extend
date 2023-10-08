@@ -1,5 +1,5 @@
 import { Router } from "@tsndr/cloudflare-worker-router";
-import twitchAuthHandle from "./twitch.js";
+import { twitchAuthHandle, createClipHandle } from "./twitch.js";
 
 const router = new Router();
 router.cors(); // enable cors
@@ -9,6 +9,7 @@ router.get("/", function () {
 });
 
 router.get("/auth/callback", twitchAuthHandle);
+router.get("/clip/create/:id", createClipHandle);
 
 export default {
   async fetch(request, env, context) {

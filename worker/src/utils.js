@@ -19,6 +19,7 @@ export function responseWith(body, status) {
 }
 
 export const status = {
+  Accepted: 202,
   BadRequest: 400,
   InternalError: 500,
   NotFound: 404,
