@@ -1,22 +1,4 @@
-async function handleFetchData(response) {
-  const { headers } = response;
-  const contentType = headers.get("content-type") || "";
-
-  if (contentType.includes("application/json")) {
-    return response.json();
-  } else {
-    return response.text();
-  }
-}
-
-function responseWith(body, status) {
-  return new Response(body, {
-    status,
-    headers: {
-      "content-type": "text/plain;charset=UTF-8",
-    },
-  });
-}
+import { handleFetchData, responseWith, status } from "./utils.js";
 
 async function getAccessToken(code, env, host) {
   const clientId = env.TWITCH_CLIENT_ID;
@@ -36,7 +18,7 @@ async function getAccessToken(code, env, host) {
       body: formData,
     });
 
-    if (accessData?.status != 200) {
+    if (accessData?.status != status.OK) {
       const { message } = await accessData.json();
       throw new Error(message);
     }
@@ -55,7 +37,10 @@ async function twitchAuthHandle({ env, req }) {
 
   try {
     if (code === null || code === "" || typeof code === "undefined") {
-      return responseWith("The code query oarameter is required", 500);
+      return responseWith(
+        "The code query oarameter is required",
+        status.BadRequest,
+      );
     }
 
     const accessToken = await getAccessToken(code, env, url.host);
@@ -64,7 +49,7 @@ async function twitchAuthHandle({ env, req }) {
     return Response.redirect(`https://${url.host}/clip/create/${code}`, 301);
   } catch (error) {
     console.log(error);
-    return responseWith(error.message, 500);
+    return responseWith(error.message, status.BadRequest);
   }
 }
 
