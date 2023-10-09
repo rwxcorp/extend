@@ -6,6 +6,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "esbuild src/index.js --bundle --format=esm --outfile=../terraform/dist/bundle.js",
     "lint": "prettier . --write",
     "test": "echo \"no tests LOL\""
   },
@@ -26,6 +27,7 @@
   },
   "homepage": "https://github.com/rwxcorp/extend#readme",
   "devDependencies": {
+    "esbuild": "0.19.4",
     "prettier": "3.0.3"
   },
   "dependencies": {
