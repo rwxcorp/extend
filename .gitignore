@@ -164,5 +164,4 @@ override.tf.json
 .terraformrc
 .terraform.lock.hcl
 terraform.rc
-terraform/README.md
 terraform/authorize_url
