@@ -13,7 +13,7 @@ env:
 
 jobs:
   terraform:
-    name: "build/create apply"
+    name: "build/create"
     runs-on: ubuntu-latest
     permissions:
       contents: read
