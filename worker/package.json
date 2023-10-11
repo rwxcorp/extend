@@ -28,9 +28,11 @@
   "homepage": "https://github.com/rwxcorp/extend#readme",
   "devDependencies": {
     "esbuild": "0.19.4",
-    "prettier": "3.0.3"
+    "prettier": "3.0.3",
+    "prettier-config-standard": "^7.0.0"
   },
   "dependencies": {
     "@tsndr/cloudflare-worker-router": "^3.1.0"
-  }
+  },
+  "prettier": "prettier-config-standard"
 }

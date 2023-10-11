@@ -1,11 +1,11 @@
 export async function handleFetchData(response) {
-  const { headers } = response;
-  const contentType = headers.get("content-type") || "";
+  const { headers } = response
+  const contentType = headers.get('content-type') || ''
 
-  if (contentType.includes("application/json")) {
-    return response.json();
+  if (contentType.includes('application/json')) {
+    return response.json()
   } else {
-    return response.text();
+    return response.text()
   }
 }
 
@@ -13,9 +13,9 @@ export function responseWith(body, status) {
   return new Response(body, {
     status,
     headers: {
-      "content-type": "text/plain;charset=UTF-8",
-    },
-  });
+      'content-type': 'text/plain;charset=UTF-8'
+    }
+  })
 }
 
 export const status = {
@@ -24,4 +24,5 @@ export const status = {
   InternalError: 500,
   NotFound: 404,
   OK: 200,
-};
+  Redirect: 301
+}
