@@ -3,7 +3,7 @@ import { handleFetchData, responseWith, status } from './utils.js'
 async function getAccessToken(code, env, host) {
   const clientId = env.TWITCH_CLIENT_ID
   const clientSecret = env.TWITCH_CLIENT_SECRET
-  const redirectUri = `https://${host}/auth/callback`
+  const redirectUri = `https://${host}/auth/twitch/callback`
 
   const formData = new FormData()
   formData.append('client_id', clientId)
@@ -146,7 +146,7 @@ async function linkAuthorization({ env, req }) {
   const url = new URL(req.url)
   const twitchURL = 'https://id.twitch.tv/oauth2/authorize?response_type=code'
   const clientId = `client_id=${env.TWITCH_CLIENT_ID}`
-  const redirectURI = `redirect_uri=https://${url.host}/auth/callback`
+  const redirectURI = `redirect_uri=https://${url.host}/auth/twitch/callback`
   const scope = 'scope=clips:edit'
   const authLink = `${twitchURL}&${clientId}&${redirectURI}&${scope}`
 
