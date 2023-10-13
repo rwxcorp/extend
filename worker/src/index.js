@@ -1,35 +1,18 @@
 import { Router } from '@tsndr/cloudflare-worker-router'
 import { responseWith, status } from './utils.js'
-import { twitchAuthHandle, createClipHandle } from './twitch.js'
-import pastebinHandle from './pastebin.js'
+import twitch from './twitch.js'
+import pastebin from './pastebin.js'
 
 const router = new Router()
-router.cors() // enable cors
+router.cors()
 
-router.get('/auth/callback', twitchAuthHandle)
-router.get('/clip/create/:id', createClipHandle)
-router.get('/clip/command/:id', function ({ req }) {
-  const url = new URL(req.url)
-  const id = req.params.id
+router.get('/auth/twitch', twitch.linkAuthorization)
+router.get('/auth/twitch/callback', twitch.authCallback)
 
-  return responseWith(
-    `$(customapi.https://${url.host}/clip/create/${id}?channel=$(channel))`,
-    status.OK
-  )
-})
-router.get('/login', function ({ env, req }) {
-  const url = new URL(req.url)
-  const twitchURL = 'https://id.twitch.tv/oauth2/authorize?response_type='
-  const type = 'code'
-  const clientId = `&client_id=${env.TWITCH_CLIENT_ID}`
-  const redirectURI = `&redirect_uri=https://${url.host}/auth/callback`
-  const scope = '&scope=clips:edit'
+router.get('/clip/create/:id', twitch.createClip)
+router.get('/clip/command/:id', twitch.clipCommand)
 
-  const authLink = `${twitchURL}${type}${clientId}${redirectURI}${scope}`
-
-  return Response.redirect(authLink, status.Redirect)
-})
-router.get('/pastebin/:paste', pastebinHandle)
+router.get('/pastebin/:paste', pastebin)
 
 export default {
   async fetch(request, env, context) {
