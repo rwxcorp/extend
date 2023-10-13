@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "build": "esbuild src/index.js --bundle --format=esm --outfile=../terraform/dist/bundle.js",
-    "lint": "prettier . --write",
+    "format": "prettier . --write",
     "test": "echo \"no tests LOL\""
   },
   "repository": {
