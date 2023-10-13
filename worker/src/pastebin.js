@@ -71,7 +71,7 @@ function parseText(text, queries) {
   return parsed
 }
 
-export default async function pastebinHandle({ req }) {
+export default async function pastebin({ req }) {
   const paste = req.params.paste
   const queries = req.query
 
