@@ -22,14 +22,3 @@ variable "cloudflare_zone_id" {
   description = "The unique identifier (Zone ID) for a specific DNS zone in your Cloudflare account."
   type        = string
 }
-
-variable "twitch_client_id" {
-  description = "The client ID associated with a Twitch API integration for authentication and authorization."
-  type        = string
-}
-
-variable "twitch_client_secret" {
-  description = "The client secret associated with a Twitch API integration."
-  sensitive   = true
-  type        = string
-}
