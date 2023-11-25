@@ -8,11 +8,6 @@ variable "cloudflare_domain" {
   type        = string
 }
 
-variable "cloudflare_kv_name" {
-  description = "The name of a specific Key-Value (KV) store in Cloudflare Workers used for data storage."
-  type        = string
-}
-
 variable "cloudflare_worker_name" {
   description = "The name or identifier of a Cloudflare Worker script you want to deploy."
   type        = string
