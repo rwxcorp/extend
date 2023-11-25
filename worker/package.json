@@ -20,7 +20,7 @@
     "extend",
     "twitch"
   ],
-  "author": "RWXCorp <github@rwxcorp.net>",
+  "author": "RWXCorp <opensource@rwxcorp.net>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/rwxcorp/extend/issues"
