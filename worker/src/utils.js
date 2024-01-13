@@ -13,7 +13,7 @@ export function responseWith(body, status) {
   return new Response(body, {
     status,
     headers: {
-      'content-type': 'text/plain;charset=UTF-8'
+      'Content-Type': 'text/plain;charset=UTF-8'
     }
   })
 }
